@@ -16,7 +16,7 @@ export const Navbar = () => {
           <Link to="/" className="text-white">Inicio</Link>
           <Link to="/about" className="text-white">Acerca</Link>
           <Link to="/services" className="text-white">Servicios</Link>
-          <a href="/contacto" className="text-white" target="_blank" rel="noopener noreferrer">Contacto</a>
+          <Link to="/contacto" className="text-white" target="_blank" rel="noopener noreferrer">Contacto</Link>
         </div>
         <div className="md:hidden">
           <button

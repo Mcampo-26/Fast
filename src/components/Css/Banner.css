@@ -2,3 +2,9 @@
     margin-top: -3rem;
     /* Ajusta este valor según sea necesario */
 }
+
+.card:hover {
+    box-shadow: 6px 14px 16px 0px rgba(0, 0, 0, 0.75);
+    transition: all 400ms ease;
+    transform: translateY(-2%);
+}

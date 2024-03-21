@@ -1,60 +1,291 @@
-import React from 'react';
+import React, { useState } from "react";
 import './Css/Banner.css'
 
 export const Banner = () => {
+  const [billingType, setBillingType] = useState("month");
+  const [basicPrice, setBasicPrice] = useState("19");
+  const [premiumPrice, setPremiumPrice] = useState("29");
+  const [proPrice, setProPrice] = useState("39");
+
+  const handleMonthlyBilling = () => {
+    setBillingType("month");
+    setBasicPrice("9.900");
+    setPremiumPrice("75.000");
+    setProPrice("180.000");
+  };
+
+  const handleAnnualBilling = () => {
+    setBillingType("year");
+    setBasicPrice("205");
+    setPremiumPrice("313");
+    setProPrice("421");
+  };
+
   return (
-      <div className="bg-gray-200 sm:py-16 mt-negative"> {/* Reduje la cantidad de padding vertical */}
-      <div className="mx-auto max-w-6xl px-6 lg:px-7">
-        <div className="mx-auto max-w-2xl sm:text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mt-4 sm:mt-0">Simple - Fast</h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600">Reserva tu turno .</p>
+    <div className="min-h-full bg-gray-200 pb-12">
+      <div className="w-full bg-blue-900 pt-16 pb-24 text-center">
+        <h4 className="text-2xl text-gray-100">Elige tu PLan </h4>
+        <p className="text-sm text-gray-100 mt-2">
+          tarifas diseñadas para empresas de todos los tamaños. Elige el paquete
+          que se adapte a tus necesidades.
+        </p>
+        <div className="flex items-center justify-center mt-8">
+          <button
+            onClick={handleMonthlyBilling}
+            className={`text-gray-800 px-4 py-2 rounded-tl-lg rounded-bl-lg bg-gray-200 ${
+              billingType === "month" ? "bg-blue-300" : "bg-gray-200"
+            }`}
+            title="Choose Monthly billing"
+          >
+            Pago Mensual
+          </button>
+          <button
+            onClick={handleAnnualBilling}
+            className={`text-gray-800 px-4 py-2 rounded-tr-lg rounded-br-lg bg-gray-200 ${
+              billingType === "year" ? "bg-blue-300" : "bg-gray-200"
+            }`}
+            title="Choose Annual billing"
+          >
+            Pago Anual
+          </button>
         </div>
-        <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
-          <div className="p-8 sm:p-10 lg:flex-auto">
-            <h3 className="text-2xl font-bold tracking-tight text-gray-900 ">Obtenga decuentos y beneficios </h3>
-            <p className="mt-6 text-base leading-7 text-gray-600">Pagando on line tu turno obtenes 10% de descuento.</p>
-            <div className="mt-10 flex items-center gap-x-4">
-              <h4 className="flex-none text-sm font-semibold leading-6 text-indigo-600">Que incluye?</h4>
-              <div className="h-px flex-auto bg-gray-100"></div>
+      </div>
+      <div className=" w-full 2xl:w-3/4 flex items-center justify-center px-8 md:px-32 lg:px-16 2xl:px-0 mx-auto -mt-8">
+        <div className="  w-full grid grid-cols-1 xl:grid-cols-3 gap-8">
+          <div className=" card  bg-white shadow-2xl rounded-lg py-4">
+            <p className="  text-xl text-center font-bold text-blue-600">
+              Basic{" "}
+            </p>
+
+            <p className="text-center py-8">
+              <span className="text-4xl font-bold text-gray-700">
+                $<span>{basicPrice}</span>
+              </span>
+              <span className="text-xs uppercase text-gray-500">
+                / <span> {billingType}</span>
+              </span>
+            </p>
+            <ul className="border-t border-gray-300 py-8 space-y-6">
+              <li className="flex items-center space-x-2 px-8">
+                <span className="bg-blue-600 rounded-full p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </span>
+                <span className="text-gray-600 capitalize">Revision</span>
+              </li>
+              <li className="flex items-center space-x-2 px-8">
+                <span className="bg-blue-600 rounded-full p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </span>
+                <span className="text-gray-600 capitalize">Diagnostico</span>
+              </li>
+              <li className="flex items-center space-x-2 px-8">
+                <span className="bg-blue-600 rounded-full p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </span>
+                <span className="text-gray-600 capitalize">C</span>
+              </li>
+
+              {/* Otros elementos de la lista */}
+            </ul>
+            <div className="flex items-center justify-center mt-6">
+              <a
+                href="#"
+                className="bg-blue-600 hover:bg-blue-700 px-8 py-2 text-sm text-gray-200 uppercase rounded font-bold transition duration-150"
+                title="Purchase"
+              >
+                Comprar
+              </a>
             </div>
-            <ul role="list" className="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
-              <li className="flex gap-x-3">
-                <svg className="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
-                </svg>
-                Revision y Limpieza  del equipo
+          </div>
+          <div className="bg-white shadow-2xl rounded-lg py-4 card">
+            <p className="text-xl text-center font-bold text-blue-600">
+              Premium
+            </p>
+            <p className="text-center py-8">
+              <span className="text-4xl font-bold text-gray-700">
+                $<span>{premiumPrice}</span>
+              </span>
+              <span className="text-xs uppercase text-gray-500">
+                / <span>{billingType}</span>
+              </span>
+            </p>
+
+            <ul className="border-t border-gray-300 py-8 space-y-6">
+              <li className="flex items-center space-x-2 px-8">
+                <span className="bg-blue-600 rounded-full p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </span>
+                <span className="text-gray-600 capitalize">Aceleracion</span>
               </li>
-              <li className="flex gap-x-3">
-                <svg className="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
-                </svg>
-               Cambio de tecnologia en hd
+              <li className="flex items-center space-x-2 px-8">
+                <span className="bg-blue-600 rounded-full p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </span>
+                <span className="text-gray-600 capitalize">
+                  Cambio de tecnologia en HD
+                </span>
               </li>
-              <li className="flex gap-x-3">
-                <svg className="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
-                </svg>
-                Instalacion de nuevo S.O.
-              </li>
-              <li className="flex gap-x-3">
-                <svg className="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
-                </svg>
-                Instalacion de programas adicionales sin cargo
+              <li className="flex items-center space-x-2 px-8">
+                <span className="bg-blue-600 rounded-full p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </span>
+                <span className="text-gray-600 capitalize">C</span>
               </li>
             </ul>
+
+            <div className="flex items-center justify-center mt-6">
+              <a
+                href="#"
+                className="bg-blue-600 hover:bg-blue-700 px-8 py-2 text-sm text-gray-200 uppercase rounded font-bold transition duration-150"
+                title="Purchase"
+              >
+                Comprar
+              </a>
+            </div>
           </div>
-          <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-            <div className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
-              <div className="mx-auto max-w-xs px-8">
-                <p className="text-base font-semibold text-gray-600">Abone ahora y obtenga su turno con descuento</p>
-                <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                  <span className="text-5xl font-bold tracking-tight text-gray-900">$400</span>
-                  <span className="text-sm font-semibold leading-6 tracking-wide text-gray-600">USD</span>
-                </p>
-                <a href="#" className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Obten tu turno</a>
-                <p className="mt-6 text-xs leading-5 text-gray-600">Facturas y recibos disponibles para reembolso fácil por parte de la empresa</p>
-              </div>
+          <div className="bg-white shadow-2xl rounded-lg py-4 card">
+            <p className="text-xl text-center font-bold text-blue-600 ">Pro</p>
+            <p className="text-center py-8">
+              <span className="text-4xl font-bold text-gray-700">
+                $<span>{proPrice}</span>
+              </span>
+              <span className="text-xs uppercase text-gray-500">
+                / <span>{billingType}</span>
+              </span>
+            </p>
+
+            <ul className="border-t border-gray-300 py-8 space-y-6">
+              <li className="flex items-center space-x-2 px-8">
+                <span className="bg-blue-600 rounded-full p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </span>
+                <span className="text-gray-600 capitalize">limpieza Full</span>
+              </li>
+              <li className="flex items-center space-x-2 px-8">
+                <span className="bg-blue-600 rounded-full p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </span>
+                <span className="text-gray-600 capitalize">
+                  Instalacion de programas
+                </span>
+              </li>
+              <li className="flex items-center space-x-2 px-8">
+                <span className="bg-blue-600 rounded-full p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </span>
+                <span className="text-gray-600 capitalize">
+                  Instalacion de S.O.
+                </span>
+              </li>
+            </ul>
+
+            <div className="flex items-center justify-center mt-6">
+              <a
+                href="#"
+                className="bg-blue-600 hover:bg-blue-700 px-8 py-2 text-sm text-gray-200 uppercase rounded font-bold transition duration-150"
+                title="Purchase"
+              >
+                Comprar
+              </a>
             </div>
           </div>
         </div>

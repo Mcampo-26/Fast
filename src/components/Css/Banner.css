@@ -8,3 +8,7 @@
     transition: all 400ms ease;
     transform: translateY(-2%);
 }
+
+.card {
+    width: 75%;
+}

@@ -1,7 +1,9 @@
 import React from 'react';
 
+
 export const Center = () => {
   return (
+    <>
     <header>
       <section id="brand" className="brand bg-blue-50 mt-2 py-8"> {/* Reducir el padding */}
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
@@ -32,7 +34,7 @@ export const Center = () => {
           <div className="md:w-1/2 mt-4 md:mt-0 relative"> {/* Reducir el espacio vertical */}
             <div className="overflow-hidden h-full rounded-md"> {/* Ajustar la clase de redondez */}
               <img
-                src="https://scontent.ftuc1-2.fna.fbcdn.net/v/t39.30808-6/329588930_744450246907526_6590080804087017891_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGiZVglOJGD-eOok0iLVVgRlMekGL8qGoSUx6QYvyoahA8_ChfEok9vR0E_MRWdRN6gBatYe6bYUH8BtXD7SlPF&_nc_ohc=6koZLvoa22oAX9-R4xD&_nc_ht=scontent.ftuc1-2.fna&oh=00_AfCpo0trHbx14yfhHJMhlU3Os7FujD42-4A1W1-YV3-_9w&oe=660268DF"
+                src="https://www.innovacionate.com/images/reparacion-computadoras.png"
                 alt="Laptop"
                 className="brand-image w-4/5 mr-8 lg:w-2/6 mb-12 rounded-md float-left" // Ajustar la clase de redondez y alineación
               />
@@ -44,5 +46,7 @@ export const Center = () => {
         </div>
       </section>
     </header>
+   
+    </>
   );
 };

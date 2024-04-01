@@ -1,0 +1,16 @@
+.formulariio {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(13, 16, 17, 0.339) 35%, rgb(146, 220, 235) 100%);
+}
+
+.FondoReserva {
+    background-image: url('https://sanmigueldetucuman.solutekla.com/photo/1/solutek/servicios/diagnostico_all_and_one/diagnostico_all_and_one_0001');
+    background-size: 60rem;
+    /* Define el tamaño deseado para la imagen */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    background-color: rgb(135, 160, 160);
+    /* Color de fondo */
+    background-position: center;
+    /* Centra la imagen */
+}

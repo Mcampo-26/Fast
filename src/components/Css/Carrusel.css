@@ -1,0 +1,29 @@
+/* Estilos para las flechas del slider */
+
+.slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.slick-arrow:hover {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.prev-arrow {
+    left: 10px;
+}
+
+.next-arrow {
+    right: 10px;
+}

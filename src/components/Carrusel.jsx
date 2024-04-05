@@ -15,6 +15,8 @@ export const Carrusel = () => {
     arrows: true, // Habilitar flechas de navegación
     prevArrow: <CustomPrevArrow />, // Componente personalizado para la flecha anterior
     nextArrow: <CustomNextArrow />, // Componente personalizado para la flecha siguiente
+    autoplay: true, // Activar reproducción automática del carrusel
+    autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 768,

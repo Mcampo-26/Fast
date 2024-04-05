@@ -21,7 +21,8 @@ export const Carrusel = () => {
       {
         breakpoint: 768,
         settings: {
-          arrows: false // Ocultar flechas en dispositivos móviles
+          arrows: false,
+          centerPadding: '0px' // Ajusta el padding a 0 en dispositivos móviles// Ocultar flechas en dispositivos móviles
         }
       }
     ]
@@ -31,7 +32,7 @@ export const Carrusel = () => {
 <div className="max-w-screen-xl mx-auto py-8">
   <Slider {...settings}>
     <div>
-      <img src='https://gtsinformatica.com/wp-content/uploads/2020/10/reparacion-de-notebook-1.jpg' alt="Image 1" className="w-full max-h-48 md:max-h-80 object-contain" />
+      <img src='https://gtsinformatica.com/wp-content/uploads/2020/10/reparacion-de-notebook-1.jpg' alt="Image 1" className="w-full max-h-48 md:max-h-0 object-contain" />
     </div>
     <div>
       <a href="https://www.instagram.com/reel/C2TYR1GOtGB/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">

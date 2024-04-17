@@ -4,7 +4,8 @@ import { Navbar } from './components/Navbar';
 import { Footer } from "./components/Footer";
 import { Contacto } from './pages/Contacto';
 import { Home } from './pages/Home';
-
+import {Reserva} from './pages/Reserva'
+import { AdminPage } from "./pages/AdminPage";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import "./index.css"
 
@@ -22,7 +23,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Contacto" element={<Contacto />} />
-         
+          <Route path="/Reserva" element={<Reserva />} />
+          <Route path="/AdminPage" element={<AdminPage />} />
         </Routes>
         <Footer />
       </Router>

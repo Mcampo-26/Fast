@@ -1,0 +1,60 @@
+.check-container {
+    position: relative;
+    display: inline-block;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Efecto de sombra */
+    transition: box-shadow 0.3s;
+    /* Transición suave */
+}
+
+.check-container:hover .checkmark {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    /* Efecto de sombra al hacer hover */
+}
+
+
+/* Cuando el checkbox está marcado */
+
+.check-container input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+
+/* Dibujar el tick */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Mostrar el tick cuando el checkbox está marcado */
+
+.check-container input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Estilo del tick */
+
+.check-container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}

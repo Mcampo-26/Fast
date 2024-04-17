@@ -1,0 +1,10 @@
+.hora-input:hover {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+}
+
+.rbc-events-container:hover {
+    /* Agrega aquí los estilos que deseas aplicar cuando se pase el mouse sobre el contenedor */
+    background-color: #b92525;
+    /* Cambia el color de fondo, por ejemplo */
+}

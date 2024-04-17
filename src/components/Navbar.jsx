@@ -17,6 +17,7 @@ export const Navbar = () => {
           <Link to="/about" className="text-white">Acerca</Link>
           <Link to="/services" className="text-white">Servicios</Link>
           <Link to="/Contacto" className="text-white" target="_blank" rel="noopener noreferrer">Contacto</Link>
+          <Link to="/AdminPage" className="text-white" target="_blank" rel="noopener noreferrer">Admin</Link>
         </div>
         <div className="md:hidden">
           <button
@@ -24,7 +25,7 @@ export const Navbar = () => {
             onClick={() => setShowMenu(!showMenu)}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
           </button>
         </div>
@@ -33,6 +34,7 @@ export const Navbar = () => {
         <Link to="/" className="block py-2 px-4 text-white">Inicio</Link>
         <Link to="/about" className="block py-2 px-4 text-white">Acerca</Link>
         <Link to="/services" className="block py-2 px-4 text-white">Servicios</Link>
+        <Link to="/AdminPage" className="block py-2 px-4 text-white">Admin</Link>
         <a href="/contacto" className="block py-2 px-4 text-white" target="_blank" rel="noopener noreferrer">Contacto</a>
       </div>
     </nav>

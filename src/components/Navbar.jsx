@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const location = useLocation();
+
+  // Verificar si estamos en la ruta "/CartaBar"
+  const isCartaBarRoute = location.pathname === '/CartaBar';
+
+  // No renderizar el Navbar si estamos en la ruta "/CartaBar"
+  if (isCartaBarRoute) {
+    return null;
+  }
 
   return (
     <nav className="bg-gray-800 p-4">
@@ -18,6 +27,7 @@ export const Navbar = () => {
           <Link to="/services" className="text-white">Servicios</Link>
           <Link to="/Contacto" className="text-white" target="_blank" rel="noopener noreferrer">Contacto</Link>
           <Link to="/AdminPage" className="text-white" target="_blank" rel="noopener noreferrer">Admin</Link>
+          <Link to="/CartaBar" className="text-white" target="_blank" rel="noopener noreferrer">CartaBar</Link>
         </div>
         <div className="md:hidden">
           <button
@@ -35,6 +45,7 @@ export const Navbar = () => {
         <Link to="/about" className="block py-2 px-4 text-white">Acerca</Link>
         <Link to="/services" className="block py-2 px-4 text-white">Servicios</Link>
         <Link to="/AdminPage" className="block py-2 px-4 text-white">Admin</Link>
+        <Link to="/CartaBar" className="text-white" target="_blank" rel="noopener noreferrer">CartaBar</Link>
         <a href="/contacto" className="block py-2 px-4 text-white" target="_blank" rel="noopener noreferrer">Contacto</a>
       </div>
     </nav>

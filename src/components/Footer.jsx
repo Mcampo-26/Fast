@@ -1,6 +1,16 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const Footer = () => {
+  const location = useLocation();
+
+  // Verificar si estamos en la ruta "/CartaBar"
+  const isCartaBarRoute = location.pathname === '/CartaBar';
+
+  // No renderizar el footer si estamos en la ruta "/CartaBar"
+  if (isCartaBarRoute) {
+    return null;
+  }
   return (
     <footer className="container-fluid bg-white dark:bg-gray-900 mt-2">
       <div className="mx-auto  w-full max-w-screen-xl p-4 py-6 lg:py-8">

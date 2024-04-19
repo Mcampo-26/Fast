@@ -18,7 +18,7 @@ export const Carta = () => {
   </a>
 </li>
 <li>
-  <a href="https://drive.google.com/file/d/14O64_u_VmgnNAU9LLI1jgzB9Y9xPwibn/view?usp=sharing" target="_blank" className="block text-center text-white text-lg  hover:text-black hover:bg-white px-4 py-2 rounded-lg border bg-olive transition-all duration-300 ">
+  <a href="https://www.dropbox.com/scl/fi/g39vffw00o1oq6a5hq44n/MUESTRA-MENU-AMERICANO2023.pdf?rlkey=2o4iz3vdsb3msc8fsjf69tt7a&st=b5hdq3r7&dl=0" target="_blank" className="block text-center text-white text-lg  hover:text-black hover:bg-white px-4 py-2 rounded-lg border bg-olive transition-all duration-300 ">
     PLATO PRINCIPAL
   </a>
 </li>

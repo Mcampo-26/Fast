@@ -4,12 +4,12 @@ import { useLocation } from 'react-router-dom';
 export const Footer = () => {
   const location = useLocation();
 
-  // Verificar si estamos en la ruta "/CartaBar"
+  // Verificar si estamos en la ruta "/CartaBar" o "/PlatoPrincipal"
   const isCartaBarRoute = location.pathname === '/CartaBar';
   const isPlatoPrincipalRoute = location.pathname === '/PlatoPrincipal';
 
-  // No renderizar el footer si estamos en la ruta "/CartaBar"
-  if (isCartaBarRoute,isPlatoPrincipalRoute) {
+  // No renderizar el Footer si estamos en la ruta "/CartaBar" o "/PlatoPrincipal"
+  if (isCartaBarRoute || isPlatoPrincipalRoute) {
     return null;
   }
   return (

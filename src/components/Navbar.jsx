@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+
 export const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
 
-  // Verificar si estamos en la ruta "/CartaBar"
+  // Verificar si estamos en la ruta "/CartaBar" o "/PlatoPrincipal"
   const isCartaBarRoute = location.pathname === '/CartaBar';
   const isPlatoPrincipalRoute = location.pathname === '/PlatoPrincipal';
 
-  // No renderizar el Navbar si estamos en la ruta "/CartaBar"
-  if (isCartaBarRoute,isPlatoPrincipalRoute) {
+  // No renderizar el Navbar si estamos en la ruta "/CartaBar" o "/PlatoPrincipal"
+  if (isCartaBarRoute || isPlatoPrincipalRoute) {
     return null;
   }
 

@@ -5,22 +5,24 @@ import './Css/MenuPlato.css'; // Importa el archivo CSS
 
 export const MenuPlato = () => {
     return (
-        <div className="bg">
+        <div className='bg image-container'>
             <div className="background-container">
-                <div className="md:mx-auto md:max-w-3xl h-screen flex flex-col justify-center items-center">
-                    <div className="mb-6 image-container">
-                        <img 
-                            src={imagen0} 
-                            alt="Imagen 0" 
-                            className="border"
-                        />
-                    </div>            
-                    <div className="image-container">
-                        <img 
-                            src={imagen1} 
-                            alt="Imagen 1" 
-                            className="border"
-                        />
+                <div>
+                    <div className="mb-6 md:flex md:justify-center ">
+                        <div >
+                            <img 
+                                src={imagen0} 
+                                alt="Imagen 0" 
+                                className="border  custom-img-size"
+                            />
+                        </div>            
+                        <div>
+                            <img 
+                                src={imagen1} 
+                                alt="Imagen 1" 
+                                className="border  custom-img-size"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import { Home } from './pages/Home';
 import {Reserva} from './pages/Reserva'
 import { AdminPage } from "./pages/AdminPage";
 import { CartaBar } from "./pages/CartaBar";
+import { PlatoPrincipal } from "./pages/PlatoPrincipal";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import "./index.css"
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/Reserva" element={<Reserva />} />
           <Route path="/AdminPage" element={<AdminPage />} />
           <Route path="/CartaBar" element={<CartaBar />} />
+          <Route path="/PlatoPrincipal" element={<PlatoPrincipal />} />
         </Routes>
         <Footer />
       </Router>

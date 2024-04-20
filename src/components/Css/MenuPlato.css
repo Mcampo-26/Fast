@@ -1,0 +1,77 @@
+/* MenuPlato.css */
+
+
+/* Reset de márgenes */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Esto asegura que el padding y el borde se incluyan en el ancho y alto total del elemento */
+}
+
+.background-container {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* Asegura que el contenedor ocupe toda la altura */
+}
+
+.bg {
+    background-image: url('https://i.pinimg.com/originals/9c/3d/48/9c3d48926c7e94966def78c6e702f919.jpg');
+    background-size: contain;
+}
+
+.image-container {
+    max-width: 100%;
+    max-height: calc(50vh - 60px);
+    margin: auto;
+    /* Centra horizontalmente */
+    margin-top: 10px;
+    /* Ajusta el margen superior según sea necesario */
+    display: flex;
+    /* Usa flexbox */
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.image-container img:hover {
+    transform: scale(1.1);
+}
+
+.image-container img.border {
+    border: 2px solid #888;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Estilos específicos para pantallas grandes */
+
+@media (min-width: 1024px) {
+    .background-container {
+        justify-content: center;
+        /* Alinea el fondo al centro en pantallas grandes */
+    }
+    .image-container {
+        flex-direction: row;
+        /* Establece la dirección de la fila para las imágenes */
+        margin-left: 0;
+        /* Elimina el margen izquierdo */
+    }
+    .image-container img {
+        margin-right: 20px;
+        /* Agrega espacio entre las imágenes */
+    }
+}

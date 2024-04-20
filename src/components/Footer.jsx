@@ -6,9 +6,10 @@ export const Footer = () => {
 
   // Verificar si estamos en la ruta "/CartaBar"
   const isCartaBarRoute = location.pathname === '/CartaBar';
+  const isPlatoPrincipalRoute = location.pathname === '/PlatoPrincipal';
 
   // No renderizar el footer si estamos en la ruta "/CartaBar"
-  if (isCartaBarRoute) {
+  if (isCartaBarRoute,isPlatoPrincipalRoute) {
     return null;
   }
   return (

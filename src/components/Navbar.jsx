@@ -7,9 +7,10 @@ export const Navbar = () => {
 
   // Verificar si estamos en la ruta "/CartaBar"
   const isCartaBarRoute = location.pathname === '/CartaBar';
+  const isPlatoPrincipalRoute = location.pathname === '/PlatoPrincipal';
 
   // No renderizar el Navbar si estamos en la ruta "/CartaBar"
-  if (isCartaBarRoute) {
+  if (isCartaBarRoute,isPlatoPrincipalRoute) {
     return null;
   }
 

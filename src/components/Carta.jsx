@@ -18,9 +18,10 @@ export const Carta = () => {
   </a>
 </li>
 <li>
-  <a href="https://raw.githubusercontent.com/Mcampo-26/Fast/2f9e430e489319c68021388e8b7649e31ed553fc/MUESTRA-MENU-AMERICANO2023.pdf" target="_blank" className="block text-center text-white text-lg  hover:text-black hover:bg-white px-4 py-2 rounded-lg border bg-olive transition-all duration-300 ">
+<a href="/PlatoPrincipal" target="_blank" className="block text-center text-white text-lg hover:text-black hover:bg-white px-4 py-2 rounded-lg border bg-olive transition-all duration-300">
     PLATO PRINCIPAL
-  </a>
+</a>
+
 </li>
 <li>
   <a href="#" className="block text-center text-white text-lg hover:text-black hover:bg-white px-4 py-2 rounded-lg border bg-olive transition-all duration-300 

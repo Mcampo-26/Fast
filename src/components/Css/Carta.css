@@ -10,7 +10,8 @@ body {
 
 .bg-carta {
     background-image: url('https://restoamericano.vercel.app/fondomenu.png');
-    background-size: cover;
+    /* Esto asegurará que la imagen cubra toda el área */
+    /* Establece el ancho al 100% */
 }
 
 .bg-olive {

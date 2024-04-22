@@ -20,7 +20,7 @@ export const MenuPlato = () => {
                             <img 
                                 src={imagen1} 
                                 alt="Imagen 1" 
-                                className="border  custom-img-size"
+                                className="border  custom-img-size mt-6"
                             />
                         </div>
                     </div>

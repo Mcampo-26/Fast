@@ -42,6 +42,7 @@
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     /* Agrega transición para el efecto de sombra */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 2em;
     /* Agrega el efecto de sombra */
 }
 

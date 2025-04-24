@@ -20,19 +20,18 @@ function LayoutRoutes() {
   const showLayout = location.pathname !== "/Bracket";
 
   return (
-    <>
-      {showLayout && <Navbar />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Contacto" element={<Contacto />} />
-        <Route path="/Reserva" element={<Reserva />} />
-        <Route path="/AdminPage" element={<AdminPage />} />
-        <Route path="/CartaBar" element={<CartaBar />} />
-        <Route path="/PlatoPrincipal" element={<PlatoPrincipal />} />
-        <Route path="/Bracket" element={<Bracket />} />
-      </Routes>
-      {showLayout && <Footer />}
-    </>
+     <>
+    {/* {showLayout && <Navbar />} */}
+    <Routes>
+      {/* <Route path="/" element={<Home />} />
+      <Route path="/Contacto" element={<Contacto />} />
+      <Route path="/Reserva" element={<Reserva />} />
+      <Route path="/AdminPage" element={<AdminPage />} />
+      <Route path="/CartaBar" element={<CartaBar />} />
+      <Route path="/PlatoPrincipal" element={<PlatoPrincipal />} /> */}
+      <Route path="/Bracket" element={<Bracket />} />
+    </Routes>
+  </>
   );
 }
 

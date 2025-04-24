@@ -8,8 +8,11 @@ import {Reserva} from './pages/Reserva'
 import { AdminPage } from "./pages/AdminPage";
 import { CartaBar } from "./pages/CartaBar";
 import { PlatoPrincipal } from "./pages/PlatoPrincipal";
+import Bracket from "./components/Bracket";
+
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import "./index.css"
+
 
 
 
@@ -29,6 +32,7 @@ function App() {
           <Route path="/AdminPage" element={<AdminPage />} />
           <Route path="/CartaBar" element={<CartaBar />} />
           <Route path="/PlatoPrincipal" element={<PlatoPrincipal />} />
+           <Route path="/Bracket" element={<Bracket />
         </Routes>
         <Footer />
       </Router>

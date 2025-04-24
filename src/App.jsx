@@ -32,7 +32,7 @@ function App() {
           <Route path="/AdminPage" element={<AdminPage />} />
           <Route path="/CartaBar" element={<CartaBar />} />
           <Route path="/PlatoPrincipal" element={<PlatoPrincipal />} />
-           <Route path="/Bracket" element={<Bracket />
+           <Route path="/Bracket" element={<Bracket/>} />
         </Routes>
         <Footer />
       </Router>

@@ -6,35 +6,109 @@ export default function TournamentBracketGenerator() {
   const [rounds, setRounds] = useState([]);
   const [showRounds, setShowRounds] = useState([]);
   const printRef = useRef();
+  const containerRef = useRef();
+  const [columnHeights, setColumnHeights] = useState([]);
+  const [readyToDrawLines, setReadyToDrawLines] = useState(false);
+  const [categoria, setCategoria] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!containerRef.current) return;
+
+      const columns = containerRef.current.querySelectorAll('[data-round-column]');
+      const newHeights = {};
+      let maxHeight = 0;
+
+      columns.forEach((col, i) => {
+        const h = col.offsetHeight;
+        newHeights[i] = h;
+        if (h > maxHeight) maxHeight = h;
+      });
+
+      newHeights.max = maxHeight; // guardamos el más alto
+      setColumnHeights(newHeights);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [rounds.length, rounds, showRounds]);
+
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setReadyToDrawLines(true);
+    }, 300); // Espera 100ms
+    return () => {
+      setReadyToDrawLines(false);
+      clearTimeout(timer);
+    };
+  }, [rounds]);
 
   const handlePrint = () => {
     const printContents = printRef.current.innerHTML;
     const printWindow = window.open('', '', 'width=1200,height=800');
-
     printWindow.document.write(`
       <html>
+
         <head>
-          <title>Fixture</title>
+         <title>Fixture - Categoría ${categoria}</title>
           <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-          <style>
-            @media print {
-              @page { size: landscape; }
-              body { padding: 20px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-              button { display: none; }
-            }
-          </style>
+   <style>
+  @media print {
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      overflow: visible;
+      transform: scale(1) !important;
+      zoom: 1 !important;
+    }
+
+    svg {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      z-index: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      display: block !important;
+    }
+  print-container {
+    width: 2400px;
+    overflow: visible !important;
+  }
+    button, textarea {
+      display: none !important;
+    }
+  }
+</style>
+
+
+
+
+
+
         </head>
         <body>${printContents}</body>
       </html>
     `);
-
     printWindow.document.close();
     printWindow.focus();
     setTimeout(() => printWindow.print(), 500);
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setRounds([...rounds]);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [showRounds]);
   const parseExcelData = () => {
-    const names = rawInput.trim().split(/[\n\r]+/).map(line => line.split("\t")[0].trim()).filter(name => name && name !== "BYE");
+    const names = rawInput.trim().split(/\n|\r+/).map(line => line.trim()).filter(name => name && name !== "BYE");
     const shuffle = (array) => {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -44,8 +118,10 @@ export default function TournamentBracketGenerator() {
     };
     const total = 2 ** Math.ceil(Math.log2(names.length));
     const byesNeeded = total - names.length;
-    const fullPlayers = [...names, ...Array(byesNeeded).fill("BYE")];
-    const randomizedPlayers = shuffle(fullPlayers);
+    const randomizedPlayers = shuffle([
+      ...names,
+      ...Array(byesNeeded).fill("BYE")
+    ]);
     const firstRound = [];
     for (let i = 0; i < randomizedPlayers.length; i += 2) {
       const p1 = randomizedPlayers[i];
@@ -67,9 +143,7 @@ export default function TournamentBracketGenerator() {
     const current = rounds[rounds.length - 1];
     const winners = current.map(m => m.winner).filter(Boolean);
     const next = [];
-    const isFirstRound = rounds.length === 1;
     let players = [...winners];
-    if (isFirstRound && players.length % 2 !== 0) players.push("BYE");
     for (let i = 0; i < players.length; i += 2) {
       const p1 = players[i];
       const p2 = players[i + 1] || null;
@@ -92,40 +166,33 @@ export default function TournamentBracketGenerator() {
     return (
       <div
         key={mIdx}
-        className={`relative mb-3 w-72 p-2 border rounded bg-white ${
-          rIdx < rounds.length - 1
-            ? "after:absolute after:top-1/2 after:right-0 after:w-8 after:h-0.5 after:bg-black"
-            : ""
-        }`}
+        className="relative mb-6 w-64 p-2 border rounded bg-white shadow"
+        data-round={rIdx}
+        data-match={mIdx}
+        id={`r${rIdx}m${mIdx}`}
       >
         {[p1, p2].map((player, idx) => (
           <div
             key={idx}
-            className={`flex justify-between p-2 ${
-              match.winner === player ? "bg-green-100" : ""
-            }`}
+            className={`flex justify-between p-2 ${match.winner === player ? "bg-green-100" : ""}`}
           >
-            <span className={player === "BYE" ? "text-gray-400" : "font-medium"}>{player}</span>
+            <span
+              data-player
+              className={player === "BYE" ? "text-gray-400" : "font-medium"}
+            >{player}</span>
+
             {p1 !== "BYE" && p2 !== "BYE" && (
               <button
                 onClick={() => handleWinnerSelect(rIdx, mIdx, player)}
-                className={`absolute ${
-                  idx === 0 ? "top-2" : "bottom-2"
-                } right-2 w-6 h-6 rounded-full border-2 text-xs ${
-                  match.winner === player
-                    ? "bg-green-500 text-white"
-                    : "bg-white border-gray-400"
-                }`}
-              >
-                ✓
-              </button>
+                className={`w-6 h-6 rounded-full border-2 text-xs ${match.winner === player ? "bg-green-500 text-white" : "bg-white border-gray-400"}`}
+              >✓</button>
             )}
           </div>
         ))}
       </div>
     );
   };
-  
+
   const getChampion = () => {
     const last = rounds[rounds.length - 1];
     if (last && last.length === 1 && last[0].winner && last[0].winner !== "BYE") {
@@ -134,8 +201,46 @@ export default function TournamentBracketGenerator() {
     return null;
   };
 
+  const calculateLinePath = (x1, y1, x2, y2) => {
+    const midX = (x1 + x2) / 2;
+    return `M${x1},${y1} C${midX},${y1} ${midX},${y2} ${x2},${y2}`;
+  };
+
+  const getElementCenter = (id, isSource = true) => {
+    const el = document.getElementById(id);
+    const container = containerRef.current;
+    if (!el || !container) return [0, 0];
+
+    const nameEl = el.querySelector('[data-player]');
+    const box = (nameEl || el).getBoundingClientRect();
+    const containerBox = container.getBoundingClientRect();
+
+    const x = isSource
+      ? box.right - containerBox.left
+      : box.left - containerBox.left;
+
+    const y = box.top - containerBox.top + box.height / 2;
+
+    return [x, y];
+  };
+
+
+
+
   return (
     <div className="p-4 max-w-full">
+      <div className="mb-4 w-fit">
+      <label className="block text-md font-semibold text-gray-700 mb-1 tracking-wide">Categoría</label>
+
+  <input
+    type="text"
+    value={categoria}
+    onChange={(e) => setCategoria(e.target.value)}
+    placeholder="Ingrese la categoría"
+    className="border p-2 rounded border-gray-300 w-48"
+  />
+</div>
+
       <h1 className="text-2xl font-bold mb-4">Generador de Fixture de Torneos</h1>
       <div className="flex justify-end">
         <button onClick={handlePrint} className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded mb-4">🖨️ Imprimir Fixture</button>
@@ -149,44 +254,82 @@ export default function TournamentBracketGenerator() {
           className="w-full border p-2 mb-4 font-mono border-gray-300 rounded"
           placeholder="Ejemplo:\nCompetidor 1\nCompetidor 2"
         />
-        <button onClick={parseExcelData} className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Generar Primera Ronda</button>
+        <button
+          onClick={parseExcelData}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+          disabled={!categoria.trim()}
+        >
+          Generar Primera Ronda
+        </button>
       </div>
       {rounds.length > 0 && canGenerateNext() && (
         <button onClick={generateNextRound} className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded mb-4">Generar Siguiente Ronda</button>
       )}
-      <div ref={printRef} className="relative">
-        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
-          {rounds.slice(0, -1).map((round, rIdx) => (
-            round.map((match, mIdx) => {
-              const nextRound = rounds[rIdx + 1];
-              const winner = match.winner;
-              if (!winner) return null;
-              const nextMatchIdx = nextRound.findIndex(m => m.players.includes(winner));
-              if (nextMatchIdx === -1) return null;
-              const x1 = 290 * rIdx + 250;
-              const y1 = 130 * mIdx + 35;
-              const x2 = 290 * (rIdx + 1);
-              const y2 = 130 * nextMatchIdx + 35;
-              return <line key={`${rIdx}-${mIdx}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke="black" strokeWidth="1.5" />;
-            })
-          ))}
-        </svg>
-
-        <div className="flex gap-6 overflow-x-auto">
-          {showRounds.map((show, idx) =>
-            show ? (
-              <div key={idx}>
-                <h3 className="font-bold text-center mb-2">Ronda {idx + 1}</h3>
-                {rounds[idx].map((match, mIdx) => renderMatch(match, idx, mIdx))}
-              </div>
-            ) : null
+      <div ref={printRef} className="relative overflow-x-auto">
+        <div
+          ref={containerRef}
+          className="relative"
+          style={{ width: "1600px", height: "auto", overflow: "visible" }}
+        >
+          {readyToDrawLines && (
+            <svg className="absolute inset-0 pointer-events-none" style={{ width: "100%", height: "100%", zIndex: 0 }}>
+              {rounds.slice(0, -1).map((round, rIdx) =>
+                round.map((match, mIdx) => {
+                  const winner = match.winner;
+                  if (!winner) return null;
+                  const nextRound = rounds[rIdx + 1];
+                  const nextMatchIdx = nextRound.findIndex(m => m.players.includes(winner));
+                  if (nextMatchIdx === -1) return null;
+                  const [x1, y1] = getElementCenter(`r${rIdx}m${mIdx}`);
+                  const [x2, y2] = getElementCenter(`r${rIdx + 1}m${nextMatchIdx}`);
+                  return (
+                    <path
+                      key={`${rIdx}-${mIdx}`}
+                      d={calculateLinePath(x1, y1, x2, y2)}
+                      stroke="black"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                  );
+                })
+              )}
+            </svg>
           )}
-
-          {getChampion() && (
-            <div className="flex items-center justify-center p-2 bg-green-100 rounded shadow text-green-800 font-bold text-sm h-20 min-w-[200px]">
-              🏆 Campeón: {getChampion()}
+          {categoria && (
+            <div className="text-center mb-4">
+              <h2 className="text-xl font-bold">Categoría: {categoria}</h2>
             </div>
           )}
+          <div className="w-[2200px] flex items-start justify-start space-x-48 z-10">
+
+            {showRounds.map((show, idx) =>
+              show ? (
+                <div
+                  key={idx}
+                  data-round-column
+                  className="flex flex-col items-center self-center transition-all duration-300"
+                  style={{
+                    transform: `scale(${1 - idx * 0.05})`,
+                    transformOrigin: "top center",
+                    marginTop: idx > 0 ? `-${idx * 20}px` : "0px"
+                  }}
+                >
+                  <h3 className="font-bold text-center mb-4">Ronda {idx + 1}</h3>
+                  {rounds[idx].map((match, mIdx) => renderMatch(match, idx, mIdx))}
+
+                  {idx === rounds.length - 1 && getChampion() && (
+                    <div className="flex flex-col items-center justify-center p-4 bg-green-100 rounded shadow text-green-800 font-bold text-sm h-40 min-w-[200px] mt-8 self-start">
+                      <div>🏆 Campeón:</div>
+                      <div className="text-lg">{getChampion()}</div>
+                      <div className="text-sm mt-2 text-gray-600">Categoría: {categoria}</div>
+                    </div>
+                  )}
+                </div>
+              ) : null
+            )}
+
+          </div>
+
         </div>
       </div>
     </div>

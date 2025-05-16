@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import html2canvas from "html2canvas";
 
 export default function TournamentBracketGenerator() {
   const [rawInput, setRawInput] = useState("");
@@ -35,12 +36,9 @@ export default function TournamentBracketGenerator() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setReadyToDrawLines(true);
-    }, 300); // Espera 100ms
-    return () => {
-      setReadyToDrawLines(false);
-      clearTimeout(timer);
-    };
-  }, [rounds]);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handlePrint = () => {
     const printContents = printRef.current.innerHTML;
@@ -107,6 +105,24 @@ export default function TournamentBracketGenerator() {
     }, 0);
     return () => clearTimeout(timer);
   }, [showRounds]);
+
+
+
+  const handleSaveAsImage = async () => {
+    if (!printRef.current) return;
+  
+    const canvas = await html2canvas(printRef.current, {
+      scale: 2, // mejora la calidad
+      useCORS: true,
+    });
+    const link = document.createElement("a");
+    link.download = `fixture-${categoria || "torneo"}.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  };
+  
+
+
   const parseExcelData = () => {
     const names = rawInput.trim().split(/\n|\r+/).map(line => line.trim()).filter(name => name && name !== "BYE");
     const shuffle = (array) => {
@@ -239,12 +255,17 @@ export default function TournamentBracketGenerator() {
     placeholder="Ingrese la categoría"
     className="border p-2 rounded border-gray-300 w-48"
   />
+  
 </div>
 
       <h1 className="text-2xl font-bold mb-4">Generador de Fixture de Torneos</h1>
       <div className="flex justify-end">
         <button onClick={handlePrint} className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded mb-4">🖨️ Imprimir Fixture</button>
       </div>
+      <div className="flex justify-end">
+  <button onClick={handleSaveAsImage} className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded mb-4">📸 Guardar Fixture</button>
+</div>
+
       <div className="mb-6">
         <label className="block text-sm font-medium mb-2">Pega tu lista de participantes desde Excel (un nombre por línea)</label>
         <textarea
